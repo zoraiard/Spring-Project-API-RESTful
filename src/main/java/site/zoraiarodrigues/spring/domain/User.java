@@ -3,10 +3,14 @@ package site.zoraiarodrigues.spring.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.relation.Role;
+
 public class User {
 	private Long id;
 	private String name;
+	private String email;
 	private String password;
+	private Role role;
 	private List<Request> requests = new ArrayList<Request>();
 	private List<RequestState> stages = new ArrayList<RequestState>();
 			
@@ -14,7 +18,7 @@ public class User {
 		super();
 		this.id = id;
 		this.name = name;
-		this.password = password;
+		this.password = password;	
 		this.requests = requests;
 	}
 	
@@ -60,6 +64,22 @@ public class User {
 
 	public void setStages(List<RequestState> stages) {
 		this.stages = stages;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 	
 
