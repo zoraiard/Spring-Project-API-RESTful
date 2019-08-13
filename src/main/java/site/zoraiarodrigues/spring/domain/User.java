@@ -1,5 +1,6 @@
 package site.zoraiarodrigues.spring.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,13 @@ import javax.persistence.OneToMany;
 import site.zoraiarodrigues.spring.domain.enums.Role;
 
 @Entity(name="user")
-public class User {
+public class User implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
