@@ -4,17 +4,50 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import site.zoraiarodrigues.spring.domain.enums.RequestState;
+
+@Entity(name="request")
 public class Request {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id; 
+	
+	@Column(length = 75, nullable = false)
 	private String subject;
+	
+	@Column(columnDefinition = "text")
 	private String description;
+	
+	@Column(name = "creation_date", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
+	
+	@Column(nullable = false)
+	@Enumerated(EnumType.ORDINAL)
 	private RequestState state;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false )
 	private User user;
-	private List<RequestState> stages = new ArrayList<RequestState>();
+	
+	@OneToMany(mappedBy = "request")
+	private List<RequestStage> stages = new ArrayList<RequestStage>();
 	
 	public Request(Long id, String subject, String description, Date creationDate, RequestState state, User user,
-			List<RequestState> stages) {
+			List<RequestStage> stages) {
 		super();
 		this.id = id;
 		this.subject = subject;
@@ -77,11 +110,11 @@ public class Request {
 		this.user = user;
 	}
 
-	public List<RequestState> getStages() {
+	public List<RequestStage> getStages() {
 		return stages;
 	}
 
-	public void setStages(List<RequestState> stages) {
+	public void setStages(List<RequestStage> stages) {
 		this.stages = stages;
 	}
 

@@ -3,17 +3,43 @@ package site.zoraiarodrigues.spring.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.relation.Role;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+import site.zoraiarodrigues.spring.domain.enums.Role;
+
+@Entity(name="user")
 public class User {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(length = 75, nullable = false)
 	private String name;
+	
+	@Column(length = 75, nullable = false, unique = true)
 	private String email;
+	
+	@Column(length = 100, nullable = false)
 	private String password;
+	
+	@Column(nullable = false)
+	@Enumerated(EnumType.ORDINAL)
 	private Role role;
+	
+	@OneToMany(mappedBy = "user")  // Um usuário pode ter vário pedidos	
 	private List<Request> requests = new ArrayList<Request>();
-	private List<RequestState> stages = new ArrayList<RequestState>();
-			
+
+	@OneToMany(mappedBy = "user") 		
+    private List<RequestStage> stages = new ArrayList<RequestStage>();
+	
 	public User(Long id, String name, String password, List<Request> requests) {
 		super();
 		this.id = id;
@@ -58,11 +84,11 @@ public class User {
 		this.requests = requests;
 	}
 
-	public List<RequestState> getStages() {
+	public List<RequestStage> getStages() {
 		return stages;
 	}
 
-	public void setStages(List<RequestState> stages) {
+	public void setStages(List<RequestStage> stages) {
 		this.stages = stages;
 	}
 
