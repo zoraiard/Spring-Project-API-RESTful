@@ -46,13 +46,13 @@ public class Request implements Serializable {
 	private RequestState state;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false )
-	private User user;
+	@JoinColumn(name = "owner_id", nullable = false )
+	private User owner;
 	
 	@OneToMany(mappedBy = "request")
 	private List<RequestStage> stages = new ArrayList<RequestStage>();
 	
-	public Request(Long id, String subject, String description, Date creationDate, RequestState state, User user,
+	public Request(Long id, String subject, String description, Date creationDate, RequestState state, User owner,
 			List<RequestStage> stages) {
 		super();
 		this.id = id;
@@ -60,7 +60,7 @@ public class Request implements Serializable {
 		this.description = description;
 		this.creationDate = creationDate;
 		this.state = state;
-		this.user = user;
+		this.owner = owner;
 		this.stages = stages;
 	}
 	
@@ -108,12 +108,12 @@ public class Request implements Serializable {
 		this.state = state;
 	}
 
-	public User getUser() {
-		return user;
+	public User getOwer() {
+		return owner;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 
 	public List<RequestStage> getStages() {

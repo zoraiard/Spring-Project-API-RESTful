@@ -40,10 +40,10 @@ public class User implements Serializable{
 	@Enumerated(EnumType.ORDINAL)
 	private Role role;
 	
-	@OneToMany(mappedBy = "user")  // Um usuário pode ter vário pedidos	
+	@OneToMany(mappedBy = "owner")  // Um usuário pode ter vário pedidos	
 	private List<Request> requests = new ArrayList<Request>();
 
-	@OneToMany(mappedBy = "user") 		
+	@OneToMany(mappedBy = "owner") 		
     private List<RequestStage> stages = new ArrayList<RequestStage>();
 	
 	public User(Long id, String name, String password, List<Request> requests) {

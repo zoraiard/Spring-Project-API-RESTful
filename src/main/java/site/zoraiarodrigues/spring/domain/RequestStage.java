@@ -41,8 +41,8 @@ public class RequestStage implements Serializable{
 	private Request request;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
-	private User user;
+	@JoinColumn(name = "owner_id", nullable = false)
+	private User owner;
 	
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
@@ -79,11 +79,11 @@ public class RequestStage implements Serializable{
 	public void setRequest(Request request) {
 		this.request = request;
 	}
-	public User getUser() {
-		return user;
+	public User getOwner() {
+		return owner;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 	
 }
