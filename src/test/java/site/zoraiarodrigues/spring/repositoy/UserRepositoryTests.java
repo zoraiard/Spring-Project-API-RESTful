@@ -54,7 +54,7 @@ public class UserRepositoryTests {
 	@Test
 	public void loginTest() {
 		
-	  Optional<User> optionalUser = userRepository.login2("zoraiarodrigues@gmail.com", "159753");
+	  Optional<User> optionalUser = userRepository.login("zoraiarodrigues@gmail.com", "159753");
 		User loggedUser = optionalUser.get();
 		assertThat(loggedUser.getId()).isEqualTo(1L); 
 	}

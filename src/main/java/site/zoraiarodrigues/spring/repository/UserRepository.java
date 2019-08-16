@@ -11,12 +11,9 @@ import site.zoraiarodrigues.spring.domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 	
-	@Query("SELECT u FROM user u WHERE email like ?1 AND password = ?2")
-	public Optional<User> login(String email, String password);
-	
 	public Optional<User> findByName(String name);
 	
-	 @Query("select u from user u where u.email = ?1 AND u.password = ?2")
-	 public Optional<User> login2(String email, String password);
+	@Query("select u from user u where u.email = ?1 AND u.password = ?2")
+	public Optional<User> login(String email, String password);
 	   
 }
