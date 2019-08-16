@@ -46,12 +46,15 @@ public class User implements Serializable{
 	@OneToMany(mappedBy = "owner") 		
     private List<RequestStage> stages = new ArrayList<RequestStage>();
 	
-	public User(Long id, String name, String password, List<Request> requests) {
+	public User(Long id, String name, String email, String password, Role role, List<Request> requests, List<RequestStage> stages) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.email = email;
 		this.password = password;	
 		this.requests = requests;
+		this.role = role;
+		this.stages = stages;
 	}
 	
 	public User(){
