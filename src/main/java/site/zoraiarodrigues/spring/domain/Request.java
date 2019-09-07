@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 
 import site.zoraiarodrigues.spring.domain.enums.RequestState;
 
+
 @Entity(name="request")
 public class Request implements Serializable {
 	/**
@@ -31,13 +32,13 @@ public class Request implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id; 
 	
-	@Column(length = 75, nullable = false)
+	@Column(length = 100, nullable = false)
 	private String subject;
 	
 	@Column(columnDefinition = "text")
 	private String description;
 	
-	@Column(name = "creation_date", nullable = false)
+	@Column(name = "creation_date", nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
@@ -123,7 +124,5 @@ public class Request implements Serializable {
 	public void setStages(List<RequestStage> stages) {
 		this.stages = stages;
 	}
-
-
 	
 }
